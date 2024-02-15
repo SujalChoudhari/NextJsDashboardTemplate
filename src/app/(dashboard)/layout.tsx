@@ -42,11 +42,11 @@ const Sidebar: React.FC<SidebarProps> = ({ links }) => (
                 </p>
             </Link>
         </div>
-        <nav className="flex-1 overflow-auto p-4 space-y-4 md:p-2 md:space-y-2 lg:space-y-4">
+        <div className="flex-1 overflow-auto p-4 space-y-4 md:p-2 md:space-y-2 lg:space-y-4">
             {links.map((link, index) => (
                 <SidebarLink key={index} {...link} />
             ))}
-        </nav>
+        </div>
     </div>
 );
 

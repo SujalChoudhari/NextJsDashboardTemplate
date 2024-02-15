@@ -1,113 +1,270 @@
+"use client";
 import Image from "next/image";
-
+import Link from "next/link";
+import { useEffect } from "react";
+// import "./home.module.css"
 export default function Home() {
+
+  useEffect(() => {
+    // @ts-ignore
+    const scroll = new LocomotiveScroll({
+      el: document.querySelector('#main'),
+      smooth: true
+    });
+
+
+    function page4Animation() {
+      var elemC = document.querySelector("#elem-container")
+      var fixed = document.querySelector("#fixed-image")
+      elemC?.addEventListener("mouseenter", function () {
+        //@ts-ignore
+        fixed.style.display = "block"
+      })
+      elemC?.addEventListener("mouseleave", function () {
+        // @ts-ignore
+        fixed.style.display = "none"
+      })
+
+      var elems = document.querySelectorAll(".elem")
+      elems.forEach(function (e) {
+        e.addEventListener("mouseenter", function () {
+          var image = e.getAttribute("data-image")
+          // @ts-ignore
+          fixed.style.backgroundImage = `url(${image})`
+        })
+      })
+    }
+
+    function swiperAnimation() {
+      // @ts-ignore
+      var swiper = new Swiper(".mySwiper", {
+        slidesPerView: "auto",
+        centeredSlides: true,
+        spaceBetween: 100,
+      });
+    }
+    function menuAnimation() {
+
+      var menu = document.querySelector("nav h3")
+      var full = document.querySelector("#full-scr")
+      var navimg = document.querySelector("nav img")
+      var flag = 0
+      menu?.addEventListener("click", function () {
+        if (flag == 0) {
+          // @ts-ignore
+          full.style.top = 0
+          // @ts-ignore
+          navimg.style.opacity = 0
+          flag = 1
+        } else {
+          // @ts-ignore
+          full.style.top = "-100%"
+          // @ts-ignore
+          navimg.style.opacity = 1
+          flag = 0
+        }
+      })
+    }
+
+    function loaderAnimation() {
+      var loader = document.querySelector("#loader")
+      setTimeout(function () {
+        // @ts-ignore
+        if (loader && loader.style) { loader.style.top = "-100%" }
+      }, 4200)
+    }
+
+    try {
+      swiperAnimation()
+      page4Animation()
+      menuAnimation()
+      loaderAnimation()
+    }
+    catch (e) {
+      // Ignore 
+    }
+
+    // Clean up the LocomotiveScroll instance when the component unmounts
+    return () => {
+      scroll.destroy();
+    };
+  }, []); // Empty dependency array to run the effect only once when the component mounts
+
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <>
+      <div id="fixed-image">
+      </div>
+
+      <div id="main">
+        <div id="page1">
+          <nav>
+            <img src="./instaprlogo1.png" width="200px" alt="" />
+            <div id="nav-part2">
+              <h4><Link href="/marketplace">Explore</Link></h4>
+              <h4><Link href="/home">Dashboard</Link></h4>
+              <h4><Link href="https://fellows.rookhq.com">Contact</Link></h4>
+            </div>
+            <h3>Menu</h3>
+          </nav>
+          <div id="center">
+            <div id="left">
+              <h3>At InstaPR, we are committed to crafting
+                compelling narratives, building impactful
+                relationships, and navigating the ever-evolving
+                landscape of public relations to ensure your brand's
+                success and enduring legacy.
+              </h3>
+            </div>
+            <div id="right">
+
+              <h1>YOUR PATH<br />
+                TO <br />
+                EXCEPTIONAL<br />
+                PR<br />
+                SOLUTIONS</h1>
+            </div>
+
+          </div>
+          <div id="hero-shape">
+            <div id="hero-1"></div>
+            <div id="hero-2"></div>
+            <div id="hero-3"></div>
+          </div>
+          <video autoPlay loop muted src="./video.mp4"></video>
+        </div>
+        <div id="page2">
+          <div id="moving-text">
+            <div className="con">
+              <h1>CRAFTING</h1>
+              <div id="gola"></div>
+              <h1>CONNECTIONS</h1>
+              <div id="gola"></div>
+              <h1>SHAPING</h1>
+              <div id="gola"></div>
+              <h1>REPUTATIONS</h1>
+              <div id="gola"></div>
+            </div>
+            <div className="con">
+              <h1>CRAFTING</h1>
+              <div id="gola"></div>
+              <h1>CONNECTIONS</h1>
+              <div id="gola"></div>
+              <h1>SHAPING</h1>
+              <div id="gola"></div>
+              <h1>REPUTATIONS</h1>
+              <div id="gola"></div>
+            </div>
+            <div className="con">
+              <h1>CRAFTING</h1>
+              <div id="gola"></div>
+              <h1>CONNECTIONS</h1>
+              <div id="gola"></div>
+              <h1>SHAPING</h1>
+              <div id="gola"></div>
+              <h1>REPUTATIONS</h1>
+              <div id="gola"></div>
+            </div>
+          </div>
+          <div id="page2-bottom">
+            <h2>
+              HOW<br />
+              WE<br />
+              WORK?
+            </h2>
+            <h1>Select your choice of publication. After, we<br />
+              will Schedule Your Call with Our Content<br />
+              writer Who Will write your Article and Know<br />
+              Your Brand Story. The article is 800 to 1000<br />
+              words, We need one Image and a Backlink<br />
+              for the publication from your side. This<br />
+              publication is for Lifetime and the article is<br />
+              Organic No Sponsored Content or Brand<br />
+              post is Provided by our Side.<br />
+            </h1>
+            <div id="bottom-part2">
+              <img src="https://uploads-ssl.webflow.com/64d3dd9edfb41666c35b15b7/64d3dd9edfb41666c35b15d1_Holding_thumb-p-500.jpg"
+                alt="" />
+              <p>We love to create, we love to solve, we love to collaborate, and we love to turn amazing ideas
+                into reality. We’re here to partner with you through every step of the process and know that
+                relationships are the most important things we build.</p>
+            </div>
+          </div>
+          <div id="gooey">
+
+          </div>
+        </div>
+        <div id="page3">
+          <div id="elem-container">
+            <div id="elem1" className="elem"
+              data-image="https://images.unsplash.com/photo-1701001308648-7b731a52b8d7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxNHx8fGVufDB8fHx8fA%3D%3D">
+              <div className="overlay"></div>
+              <h2>Proven Track Record:</h2>
+              <h3>Our success stories speak for themselves. We have a history of
+                delivering exceptional results for diverse clients across various
+                industries.
+              </h3>
+            </div>
+            <div className="elem"
+              data-image="https://images.unsplash.com/photo-1700975928909-da4a46227a47?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw0fHx8ZW58MHx8fHx8">
+              <div className="overlay"></div>
+              <h2>Dedicated Team of Experts:</h2>
+              <h3>Our team comprises seasoned PR professionals and analysts
+                who are passionate about driving your brand's success.
+              </h3>
+            </div>
+            <div className="elem"
+              data-image="https://images.unsplash.com/photo-1701077137611-9be394bf62f0?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyMHx8fGVufDB8fHx8fA%3D%3D">
+              <div className="overlay"></div>
+              <h2>Client-Centric Approach:</h2>
+              <h3>Your satisfaction is our priority. We maintain transparent
+                communication, listen attentively to your needs, and adapt
+                swiftly to changes.
+              </h3>
+            </div>
+            <div className="elem"
+              data-image="https://images.unsplash.com/photo-1701014159309-4a8b84faadfe?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxOXx8fGVufDB8fHx8fA%3D%3D">
+              <div className="overlay"></div>
+              <h2>Innovation and Adaptability:</h2>
+              <h3>We thrive in an ever-evolving PR landscape, constantly
+                adapting strategies to stay ahead of trends and deliver cutting-edge solutions.
+              </h3>
+            </div>
+            <div className="elem"
+              data-image="https://images.unsplash.com/photo-1700924546093-f914fd5b8814?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyOHx8fGVufDB8fHx8fA%3D%3D">
+              <div className="overlay"></div>
+              <h2>Long-Term Partnerships:</h2>
+              <h3>We don’t just aim for immediate success; we build lasting
+                relationships that foster growth and mutual success for years to
+                come.
+              </h3>
+            </div>
+          </div>
+        </div>
+
+        <div id="page5">
+
+        </div>
+        <div id="full-scr">
+          <div id="full-div1">
+
+          </div>
         </div>
       </div>
+      <div id="footer">
+        <div id="footer-div">
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-full sm:before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full sm:after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
+        </div>
+        <h1>InstaPR</h1>
+        <h3><Link href="/marketplace">Explore</Link></h3>
+        <h3><Link href="/home"> Dashboard</Link></h3>
+        <h3><Link href="https://fellows.rookhq.com"> Contact</Link></h3>
+        <div id="footer-bottom">
+
+        </div>
       </div>
-
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50 text-balance`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+      <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.js" />
+      <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" />
+    </>
   );
 }

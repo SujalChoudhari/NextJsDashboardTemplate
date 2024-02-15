@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import Link from "next/link"
 
 const data = [
@@ -94,13 +95,16 @@ export default function Component() {
                                                 item.tags.map((tag) => (
                                                     <span
                                                         key={tag}
-                                                        className="bg-gray-900 text-white px-2 py-1 rounded-full"
+                                                        className="border px-2 py-1 rounded-full"
                                                     >
                                                         {tag}
                                                     </span>
                                                 ))}
                                         </div>
-                                        <h4 className="font-semibold text-lg md:text-xl mt-2">{item.price}</h4>
+                                        <div className="flex justify-between mt-4 gap-8">
+                                            <h4 className="font-semibold text-lg md:text-xl mt-2">{item.price}</h4>
+                                            <Button className="mx-4">Buy</Button>
+                                        </div>
                                     </div>
                                 </div>
                             ))}
